@@ -4,6 +4,9 @@ var products = ['img/bag.jpg', 'img/banana.jpg', 'img/boots.jpg', 'img/chair.jpg
 
 var prodArray=[];
 var counterClicks = 0;
+var resultsButton = document.getElementById('buttonResults');
+resultsButton.className = 'hideButton';
+
 
 var firstPic = document.getElementById('first');
 var secondPic = document.getElementById('second');
@@ -63,10 +66,7 @@ function getRandomImage() {
       }
       getRandomImage();
 
-      if (counterClicks < 15) {
-         var resultsButton = document.getElementById('buttonResults');
-         resultsButton.className = 'hideButton';
-       } else {
+      if (counterClicks == 15) {
          resultsButton.className = 'showButton';
        }
     };
