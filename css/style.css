@@ -1,0 +1,19 @@
+
+.product {
+  height: 500px;
+  width: 450px;
+  overflow: hidden;
+  border: 1px solid black;
+}
+
+.product img {
+margin-bottom: 15px;
+margin-left: 10px;
+max-width: 100%;
+height: auto;
+}
+
+header {
+  height: 20%
+
+}
