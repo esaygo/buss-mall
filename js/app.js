@@ -100,27 +100,30 @@ function getRandomImage() {
             results.appendChild(tblEl);
       }
     }
+    function barChart() {
+    var ctx = document.getElementById('votes').getContext('2d');
+
+    for(var i = 0; i < prodArray.length; i++) {
+
+      var  data = {
+            labels: prodArray[i].filePath,
+            datasets: [
+          {
+            fillColor: "#48A497",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: prodArray[i].clicks
+          }
+        ]
+      }
+    }
+
+    var myBarChart = new Chart(ctx).Bar(data);
+    }
+
 
 initObjArray();
 getRandomImage();
+barChart();
 
 //bar chart
-var ctx = document.getElementById('votes').getContext('2d');
-
-for(var i = 0; i < prodArray.length; i++) {
-
-  var  data = {
-        labels: prodArray[i].filePath,
-        datasets: [
-      {
-        fillColor: "#48A497",
-        highlightFill: "rgba(220,220,220,0.75)",
-        highlightStroke: "rgba(220,220,220,1)",
-        data: prodArray[i].clicks
-      }
-    ]
-  }
-}
-
-
-var myBarChart = new Chart(ctx).Bar(data);
