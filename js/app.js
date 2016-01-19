@@ -6,6 +6,7 @@ var prodArray=[];
 var counterClicks = 0;
 var resultsButton = document.getElementById('buttonResults');
 resultsButton.className = 'hideButton';
+var barChartData = [ [], []];
 
 
 var firstPic = document.getElementById('first');
@@ -32,6 +33,7 @@ function initObjArray() {
   for(var i = 0; i < products.length; i++) {
     var image = new Product(products[i]);
     prodArray.push(image);
+    barChartData.push([image.filePath, image.clicks]);
   }
 
 };
