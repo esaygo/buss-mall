@@ -59,14 +59,16 @@ function getRandomImage() {
           prodArray[i].clicks++;
           console.log('counter ' + prodArray[i].clicks);
           console.log('path '+this.src);
-
         }
       }
       getRandomImage();
 
-      if (counterClicks == 15) {
-      showResult();
-    }
+      if (counterClicks < 15) {
+         var resultsButton = document.getElementById('buttonResults');
+         resultsButton.className = 'hideButton';
+       } else {
+         resultsButton.className = 'showButton';
+       }
     };
 
     function showResult() {

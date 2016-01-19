@@ -17,3 +17,13 @@ header {
   height: 20%
 
 }
+
+.showButton {
+visibility: visible;
+}
+
+.hideButton {
+  display: none;
+  visibility: hidden;
+
+}
