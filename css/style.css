@@ -1,7 +1,8 @@
 
+
 .product {
-  height: 500px;
-  width: 450px;
+  height: 400px;
+  width: 350px;
   overflow: hidden;
   border: 1px solid black;
 }

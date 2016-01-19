@@ -25,7 +25,6 @@ thirdPic.addEventListener('click', handleClick);
 function Product(filePath) {
     this.filePath = filePath;
     this.clicks = 0;
-    this.lastSeen = false;
 
     };
 
@@ -60,8 +59,8 @@ function getRandomImage() {
       for (var i = 0; i < prodArray.length;i++) {
         if(this.src.indexOf(prodArray[i].filePath) >= 0 ) {
           prodArray[i].clicks++;
-          console.log('counter ' + prodArray[i].clicks);
-          console.log('path '+this.src);
+          // console.log('counter ' + prodArray[i].clicks);
+          // console.log('path '+this.src);
         }
       }
       getRandomImage();
@@ -70,6 +69,8 @@ function getRandomImage() {
          resultsButton.className = 'showButton';
        }
     };
+
+
 
     function showResult() {
       var tblEl = document.createElement('table');
@@ -87,7 +88,6 @@ function getRandomImage() {
         var trEl = document.createElement('tr');
         var thEl = document.createElement('th');
         thEl.innerHTML = '<img src="'+ prodArray[i].filePath + '" width="100" height="100">';
-                            // <img src="    smiley.gif"               height="42" width="42">
         trEl.appendChild(thEl);
         tblEl.appendChild(trEl);
         results.appendChild(tblEl);
@@ -103,3 +103,24 @@ function getRandomImage() {
 
 initObjArray();
 getRandomImage();
+
+//bar chart
+var ctx = document.getElementById('votes').getContext('2d');
+
+for(var i = 0; i < prodArray.length; i++) {
+
+  var  data = {
+        labels: prodArray[i].filePath,
+        datasets: [
+      {
+        fillColor: "#48A497",
+        highlightFill: "rgba(220,220,220,0.75)",
+        highlightStroke: "rgba(220,220,220,1)",
+        data: prodArray[i].clicks
+      }
+    ]
+  }
+}
+
+
+var myBarChart = new Chart(ctx).Bar(data);
