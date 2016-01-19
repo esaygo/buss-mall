@@ -57,12 +57,16 @@ function getRandomImage() {
       for (var i = 0; i < prodArray.length;i++) {
         if(this.src.indexOf(prodArray[i].filePath) >= 0 ) {
           prodArray[i].clicks++;
-          console.log('counter ' + prodArray[i].click);
+          console.log('counter ' + prodArray[i].clicks);
           console.log('path '+this.src);
 
         }
       }
       getRandomImage();
+
+      if (counterClicks == 15) {
+      showResult();
+    }
     };
 
     function showResult() {
@@ -76,10 +80,24 @@ function getRandomImage() {
       trEl.appendChild(thEl);
       tblEl.appendChild(trEl);
       results.appendChild(tblEl);
-      
 
+      for(var i = 0; i < prodArray.length; i++) {
+        var trEl = document.createElement('tr');
+        var thEl = document.createElement('th');
+        thEl.innerHTML = '<img src="'+ prodArray[i].filePath + '" width="100" height="100">';
+                            // <img src="    smiley.gif"               height="42" width="42">
+        trEl.appendChild(thEl);
+        tblEl.appendChild(trEl);
+        results.appendChild(tblEl);
+
+        var tdEl = document.createElement('td');
+            tdEl.textContent = prodArray[i].clicks;
+            console.log('test' + prodArray[i].clicks);
+            trEl.appendChild(tdEl);
+            tblEl.appendChild(trEl);
+            results.appendChild(tblEl);
+      }
     }
 
 initObjArray();
 getRandomImage();
-showResult();
