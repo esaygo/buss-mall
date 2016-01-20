@@ -6,7 +6,8 @@ var prodArray=[];
 var counterClicks = 0;
 var resultsButton = document.getElementById('buttonResults');
 resultsButton.className = 'hideButton';
-var barChartData = [ [], []];
+var barChartLabels = [];
+var barChartData = [];
 
 
 var firstPic = document.getElementById('first');
@@ -33,7 +34,6 @@ function initObjArray() {
   for(var i = 0; i < products.length; i++) {
     var image = new Product(products[i]);
     prodArray.push(image);
-    barChartData.push([image.filePath, image.clicks]);
   }
 
 };
@@ -96,29 +96,35 @@ function getRandomImage() {
 
         var tdEl = document.createElement('td');
             tdEl.textContent = prodArray[i].clicks;
-            console.log('test' + prodArray[i].clicks);
             trEl.appendChild(tdEl);
             tblEl.appendChild(trEl);
             results.appendChild(tblEl);
+
       }
+      barChart();
     }
+
     function barChart() {
+
     var ctx = document.getElementById('votes').getContext('2d');
 
     for(var i = 0; i < prodArray.length; i++) {
+          barChartLabels.push(prodArray[i].filePath);
+          barChartData.push(prodArray[i].clicks);
+    }
 
       var  data = {
-            labels: prodArray[i].filePath,
+            labels: barChartLabels,
             datasets: [
           {
             fillColor: "#48A497",
             highlightFill: "rgba(220,220,220,0.75)",
             highlightStroke: "rgba(220,220,220,1)",
-            data: prodArray[i].clicks
+            data: barChartData
           }
         ]
       }
-    }
+
 
     var myBarChart = new Chart(ctx).Bar(data);
     }
@@ -126,6 +132,3 @@ function getRandomImage() {
 
 initObjArray();
 getRandomImage();
-barChart();
-
-//bar chart
