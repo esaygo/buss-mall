@@ -1,0 +1,12 @@
+README.md
+user-stories.md
+LICENSE
+**.html
+**.css
+.git/**
+css/**
+img/**
+js/chart.js
+
+.eslintrc
+.eslintignore
