@@ -113,6 +113,10 @@ function getRandomImage() {
           barChartData.push(prodArray[i].clicks);
     }
 
+    for(var i = 0; i < products.length; i++) {
+         barChartLabels[i] = barChartLabels[i].replace('img/','');
+         barChartLabels[i] = barChartLabels[i].replace('.jpg',''); 
+    }
       var  data = {
             labels: barChartLabels,
             datasets: [
@@ -128,6 +132,7 @@ function getRandomImage() {
 
     var myBarChart = new Chart(ctx).Bar(data);
     }
+
 
 
 initObjArray();
