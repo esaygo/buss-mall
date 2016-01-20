@@ -1,9 +1,19 @@
+body {
+  background-color: #d6d6c2;
+}
 
+h1, h2, p {
+  margin-left: 5%;
+}
+
+p {
+  font-size: 1.8rem;
+}
 .product {
   height: 400px;
   width: 350px;
   overflow: hidden;
-  border: 2px solid green;
+  border: 5px solid #2d2d20;
 }
 
 .product img {
@@ -15,7 +25,6 @@ height: 100%;
 
 header {
   height: 20%
-
 }
 
 .showButton {
@@ -25,5 +34,23 @@ visibility: visible;
 .hideButton {
   display: none;
   visibility: hidden;
-
+}
+#buttonResults {
+  	box-shadow: 0px 0px 0px 0px #9fb4f2;
+  	background-color:#7892c2;
+  	border-radius:10px;
+  	border:1px solid #4e6096;
+  	cursor:pointer;
+  	color:#ffffff;
+  	font-family:Arial;
+  	font-size:17px;
+  	text-decoration:none;
+  	text-shadow:0px 1px 0px #283966;
+}
+#buttonResults:hover {
+background-color:#476e9e;
+}
+#buttonResults:active {
+  position:relative;
+	top:1px;
 }
