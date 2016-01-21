@@ -108,14 +108,16 @@ function barChart() {
     labels: barChartLabels,
     datasets: [
       {
-        fillColor: '#48A497',
+        fillColor: 'darkblue',
+        responsive: true,
+        scaleLineColor: 'rgba(0,0,0,.1)',
+        scaleFontColor: '##2d2d20',
         highlightFill: 'rgba(220,220,220,0.75)',
         highlightStroke: 'rgba(220,220,220,1)',
         data: barChartData
       }
     ]
   };
-
   var myBarChart = new Chart(ctx).Bar(data);
 }
 
