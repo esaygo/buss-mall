@@ -17,10 +17,13 @@ var results = document.getElementById('results');
 var clicksOnFirst = 0;
 var clicksOnSecond = 0;
 var clicksOnThird = 0;
+var clearLS = document.getElementById('buttonClear');
+
 
 firstPic.addEventListener('click', handleClick);
 secondPic.addEventListener('click', handleClick);
 thirdPic.addEventListener('click', handleClick);
+clearLS.addEventListener('click', clearStorage);
 
 function Product(filePath) {
   this.filePath = filePath;
@@ -33,7 +36,9 @@ function initObjArray() {
     prodArray.push(image);
   }
 }
-
+// if(pro) {
+//
+// }
 function getRandomImage() {
   var i = 0;
   var a = Math.floor(Math.random()*products.length);
@@ -66,40 +71,26 @@ function handleClick() {
 }
 
 function showResult() {
-  // var tblEl = document.createElement('table');
-  // var trEl = document.createElement('tr');
-  // var thEl = document.createElement('th');
-  // thEl.textContent = 'Product';
-  // trEl.appendChild(thEl);
-  // thEl = document.createElement('th');
-  // thEl.textContent = 'Votes';
-  // trEl.appendChild(thEl);
-  // tblEl.appendChild(trEl);
-  // results.appendChild(tblEl);
-  //
-  // for(var i = 0; i < prodArray.length; i++) {
-  //   var trEl = document.createElement('tr');
-  //   var thEl = document.createElement('th');
-  //   thEl.innerHTML = '<img src="'+ prodArray[i].filePath + '" width="100" height="100">';
-  //   trEl.appendChild(thEl);
-  //   tblEl.appendChild(trEl);
-  //   results.appendChild(tblEl);
-  //
-  //   var tdEl = document.createElement('td');
-  //   tdEl.textContent = prodArray[i].clicks;
-  //   trEl.appendChild(tdEl);
-  //   tblEl.appendChild(trEl);
-  //   results.appendChild(tblEl);
-  // }
-  barChart();
+    barChart();
+    for(var i = 0; i < prodArray.length; i++) {
+      localStorage.setItem(prodArray[i].filePath,JSON.stringify(prodArray[i].clicks));
+  }
 }
 
 function barChart() {
   var ctx = document.getElementById('votes').getContext('2d');
   for(var i = 0; i < prodArray.length; i++) {
-    barChartLabels.push(prodArray[i].filePath);
-    barChartData.push(prodArray[i].clicks);
-  }
+      barChartLabels.push(prodArray[i].filePath);
+      var storedClicks = localStorage.getItem(prodArray[i].filePath);
+      if (storedClicks) {
+          var retrievedClicks = JSON.parse(storedClicks);
+          prodArray[i].clicks +=retrievedClicks;
+          barChartData.push(prodArray[i].clicks);
+        } else {
+          barChartData.push(prodArray[i].clicks);
+        }
+    }
+
   for(var i = 0; i < products.length; i++) {
     barChartLabels[i] = barChartLabels[i].replace('img/','');
     barChartLabels[i] = barChartLabels[i].replace('.jpg','');
@@ -119,6 +110,11 @@ function barChart() {
     ]
   };
   var myBarChart = new Chart(ctx).Bar(data);
+}
+
+function clearStorage() {
+  console.log('cleariing Local Storage');
+  localStorage.clear();
 }
 
 initObjArray();
