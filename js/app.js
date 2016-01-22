@@ -36,9 +36,7 @@ function initObjArray() {
     prodArray.push(image);
   }
 }
-// if(pro) {
-//
-// }
+
 function getRandomImage() {
   var i = 0;
   var a = Math.floor(Math.random()*products.length);
@@ -67,20 +65,22 @@ function handleClick() {
 
   if (counterClicks == 15) {
     resultsButton.className = 'showButton';
+    for(var i = 0; i < prodArray.length; i++) {
+      localStorage.setItem(prodArray[i].filePath,JSON.stringify(prodArray[i].clicks));
+    }
   }
 }
 
 function showResult() {
   barChart();
-  for(var i = 0; i < prodArray.length; i++) {
-    localStorage.setItem(prodArray[i].filePath,JSON.stringify(prodArray[i].clicks));
-  }
+
 }
 
 function barChart() {
   var ctx = document.getElementById('votes').getContext('2d');
   for(var i = 0; i < prodArray.length; i++) {
     barChartLabels.push(prodArray[i].filePath);
+
     var storedClicks = localStorage.getItem(prodArray[i].filePath);
     if (storedClicks) {
       var retrievedClicks = JSON.parse(storedClicks);
