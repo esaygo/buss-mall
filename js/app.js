@@ -71,25 +71,25 @@ function handleClick() {
 }
 
 function showResult() {
-    barChart();
-    for(var i = 0; i < prodArray.length; i++) {
-      localStorage.setItem(prodArray[i].filePath,JSON.stringify(prodArray[i].clicks));
+  barChart();
+  for(var i = 0; i < prodArray.length; i++) {
+    localStorage.setItem(prodArray[i].filePath,JSON.stringify(prodArray[i].clicks));
   }
 }
 
 function barChart() {
   var ctx = document.getElementById('votes').getContext('2d');
   for(var i = 0; i < prodArray.length; i++) {
-      barChartLabels.push(prodArray[i].filePath);
-      var storedClicks = localStorage.getItem(prodArray[i].filePath);
-      if (storedClicks) {
-          var retrievedClicks = JSON.parse(storedClicks);
-          prodArray[i].clicks +=retrievedClicks;
-          barChartData.push(prodArray[i].clicks);
-        } else {
-          barChartData.push(prodArray[i].clicks);
-        }
+    barChartLabels.push(prodArray[i].filePath);
+    var storedClicks = localStorage.getItem(prodArray[i].filePath);
+    if (storedClicks) {
+      var retrievedClicks = JSON.parse(storedClicks);
+      prodArray[i].clicks +=retrievedClicks;
+      barChartData.push(prodArray[i].clicks);
+    } else {
+      barChartData.push(prodArray[i].clicks);
     }
+  }
 
   for(var i = 0; i < products.length; i++) {
     barChartLabels[i] = barChartLabels[i].replace('img/','');
